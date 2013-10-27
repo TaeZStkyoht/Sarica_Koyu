@@ -54,8 +54,13 @@
                     break;
                 default:
                     timer = null;
+                    timer = setInterval(Animation2, 100);
                     break;
             }
+        }
+
+        function Animation2() {
+            doc.style.color = "rgb(" + Math.floor(Math.random() * 256) + ", " + Math.floor(Math.random() * 256) + ", " + Math.floor(Math.random() * 256) + ")";
         }
     </script>
 </head>
@@ -66,7 +71,7 @@
                 <div class="title">
                     <asp:Image runat="server" ImageUrl="Images/sarica_logo.jpg" Width="210px" Height="105px" />
                 </div>
-                <div id="msgWelcome" style="position:relative; left:250px; top:40px; font-size:xx-large; font-weight:bolder; color:green">
+                <div id="msgWelcome" style="position:relative; left:250px; top:40px; width:600px; font-size:xx-large; font-weight:bolder; color:green">
                 </div>
                 <div class="loginDisplay">
                     <asp:LinkButton ID="userOrNot" runat="server" Text="Giriþ" OnClick="userOrNot_Click" />

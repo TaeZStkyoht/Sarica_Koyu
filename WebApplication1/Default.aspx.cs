@@ -17,17 +17,22 @@ namespace WebApplication1
             if (!Page.IsPostBack)
             {
                 welcomeMsg.InnerText += " " + (Session["user"] == null ? "Misafir" : Session["user"].ToString());
+                dt.Columns.Clear();
                 dt.Columns.Add("baslik", typeof(string));
                 dt.Columns.Add("metin", typeof(string));
                 dt.Columns.Add("resim", typeof(byte[]));
                 dt = new Manager().HaberlerList();
                 haberlerTable.DataSource = dt;
                 haberlerTable.DataBind();
+                haberlerTable_SelectedIndexChanged(sender, e);
             }
         }
 
         protected void haberlerTable_SelectedIndexChanged(object sender, EventArgs e)
         {
+            haberlerImage.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dt.Rows[haberlerTable.SelectedRow.RowIndex]["resim"]);
+            haberlerBaslik.Text = dt.Rows[haberlerTable.SelectedRow.RowIndex]["baslik"].ToString();
+            haberlerMetin.Text = dt.Rows[haberlerTable.SelectedRow.RowIndex]["metin"].ToString();
         }
     }
 }
