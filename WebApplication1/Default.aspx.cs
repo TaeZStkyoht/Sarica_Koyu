@@ -16,6 +16,7 @@ namespace WebApplication1
         {
             if (!Page.IsPostBack)
             {
+                /*Main page news*/
                 welcomeMsg.InnerText += " " + (Session["user"] == null ? "Misafir" : Session["user"].ToString());
                 dt.Columns.Clear();
                 dt.Columns.Add("baslik", typeof(string));
