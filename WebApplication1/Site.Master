@@ -1,0 +1,93 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication1.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <meta http-equiv="Content-Language" content="tr" />
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript" src="../Scripts/jquery-1.4.1.js"></script>
+    <script type="text/javascript">
+        var timer = null, doc, sayi = 0;
+
+        $(document).ready(function () {
+            doc = document.getElementById("msgWelcome");
+            timer = setInterval(Animation, 100);
+        });
+
+        function Animation() {
+            switch (sayi++) {
+                case 0:
+                    doc.innerHTML += "S";
+                    break;
+                case 1:
+                    doc.innerHTML += "A";
+                    break;
+                case 2:
+                    doc.innerHTML += "R";
+                    break;
+                case 3:
+                    doc.innerHTML += "I";
+                    break;
+                case 4:
+                    doc.innerHTML += "C";
+                    break;
+                case 5:
+                    doc.innerHTML += "A";
+                    break;
+                case 6:
+                    doc.innerHTML += " ";
+                    break;
+                case 7:
+                    doc.innerHTML += "K";
+                    break;
+                case 8:
+                    doc.innerHTML += "Ö";
+                    break;
+                case 9:
+                    doc.innerHTML += "Y";
+                    break;
+                case 10:
+                    doc.innerHTML += "Ü";
+                    break;
+                default:
+                    timer = null;
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form runat="server">
+        <div class="page">
+            <div class="header">
+                <div class="title">
+                    <asp:Image runat="server" ImageUrl="Images/sarica_logo.jpg" Width="210px" Height="105px" />
+                </div>
+                <div id="msgWelcome" style="position:relative; left:250px; top:40px; font-size:xx-large; font-weight:bolder; color:green">
+                </div>
+                <div class="loginDisplay">
+                    <asp:LinkButton ID="userOrNot" runat="server" Text="Giriþ" OnClick="userOrNot_Click" />
+                </div>
+                <div class="clear hideSkiplink">
+                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Ana Sayfa" />
+                            <asp:MenuItem NavigateUrl="~/About.aspx" Text="Hakkýnda" />
+                        </Items>
+                    </asp:Menu>
+                </div>
+            </div>
+            <div class="main">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <div class="clear">
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
